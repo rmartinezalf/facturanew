@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nofra: MyString
+  codigoprd: MyString
+  cantidad: 1
+  impuesto: 1
+  precio: 1
+
+two:
+  nofra: MyString
+  codigoprd: MyString
+  cantidad: 1
+  impuesto: 1
+  precio: 1
