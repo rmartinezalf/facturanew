@@ -1,9 +1,9 @@
 module Api
     module V1
         class DetallesController <  ApplicationController
-            before_action :set_detalle, only: [:edit, :update]
+            before_action :set_detalle, only: [:show, :update, :destroy]
             def index
-              detalles = Detalle.order('created_at DESC') ;
+              detalles = Detalle.order('created_at ASC') ;
               render json:{status: 'Success',message:'load detalles',data:detalles}, status: :ok
             end
             # GET /detalles/1
@@ -12,18 +12,17 @@ module Api
             end
             # POST /detalles
             def create
-               @deta = Detalle.new(detalle_params)
+               detalle = Detalle.new(detalle_params)
 
-               if @deta.save
-                  UserMailer.with(detalle: @deta).user_email.deliver
-                  render json:{status: 'Success',message:'load detalles',data:@deta}, status: :ok
+               if detalle.save
+                  render json:{status: 'Success',message:'load detalles',data:detalle}, status: :ok
                else
-                   render json: @deta.errors, status: :unprocessable_entity
+                   render json: detalle.errors, status: :unprocessable_entity
                end
             end          
             # PATCH/PUT /detalles/1
-            def update
-              if @detalle.update(detalle_params)
+            def update                
+              if @detalle.update(detalle_params)                              
                 render json: @detalle
               else
                 render json: @detalle.errors, status: :unprocessable_entity
@@ -49,3 +48,4 @@ module Api
         end
     end
 end
+
